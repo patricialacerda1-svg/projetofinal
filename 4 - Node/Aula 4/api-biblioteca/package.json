@@ -9,7 +9,8 @@
   "scripts": {
     "start": "node src/app.js",
     "build": "echo 'Build complete'",
-    "postinstall": "prisma generate",
+    "install": "npm install && npx prisma generate",
+    "postinstall": "npx prisma generate",
     "test": "node --experimental-vm-modules node_modules/jest/bin/jest.js",
     "dev": "nodemon src/app.js"
   },
