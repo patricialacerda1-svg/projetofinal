@@ -1,0 +1,14 @@
+services:
+  - type: web
+    name: api-biblioteca
+    repo: https://github.com/patricialacerda1-svg/projetofinal.git
+    rootDir: 4 - Node/Aula 4/api-biblioteca
+    buildCommand: npm install
+    startCommand: npm start
+    envVars:
+      - key: NODE_VERSION
+        value: "20"
+      - key: DATABASE_URL
+        value: "postgresql://neondb_owner:npg_pKSZ2Qez8GtX@ep-misty-wind-acdrqzb5-pooler.sa-east-1.aws.neon.tech/neondb?sslmode=require"
+      - key: SECRET_KEY
+        value: "dfhiushj6f76sg"
