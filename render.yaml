@@ -5,8 +5,6 @@ services:
     rootDir: 4 - Node/Aula 4/api-biblioteca
     buildCommand: npm install
     startCommand: npm start
-    runtime: node
-    nodeVersion: "20"
     envVars:
       - key: DATABASE_URL
         value: "postgresql://neondb_owner:npg_pKSZ2Qez8GtX@ep-misty-wind-acdrqzb5-pooler.sa-east-1.aws.neon.tech/neondb?sslmode=require"
