@@ -4,7 +4,6 @@ services:
     env: node
     repo: https://github.com/patricialacerda1-svg/projetofinal.git
     rootDir: "4 - Node/Aula 4/api-biblioteca"
-    region: sa-east-1
     plan: free
     buildCommand: npm install
     startCommand: npm start
