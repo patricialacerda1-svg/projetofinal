@@ -5,6 +5,8 @@ export function BookGrid({ livros, pedidos, user }) {
     return <p style={{ textAlign: "center", color: "#6b7280", padding: "3rem" }}>Nenhum livro encontrado.</p>;
   }
 
+  const userHasDebt = user && pedidos.some((p) => p.usuario_id === user.id && p.status === "ativo");
+
   return (
     <div style={{
       display: "grid",
@@ -14,7 +16,7 @@ export function BookGrid({ livros, pedidos, user }) {
       {livros.map((livro) => {
         const ativos = pedidos.filter((p) => p.livro_id === livro.id && p.status === "ativo").length;
         const disponivel = (livro.estoque ?? 0) - ativos;
-        return <BookCard key={livro.id} livro={livro} disponivel={disponivel} user={user} />;
+        return <BookCard key={livro.id} livro={livro} disponivel={disponivel} user={user} userHasDebt={userHasDebt} />;
       })}
     </div>
   );
