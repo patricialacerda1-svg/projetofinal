@@ -13,7 +13,7 @@ const router = express.Router();
 
 router.get('/', validateToken, getAllPedidos); // GET /pedidos
 router.get('/:id', validateToken, getPedidoById); // GET /pedidos/:id
-router.post('/', validateToken, validateAdmin, createPedido); // POST /pedidos
+router.post('/', validateToken, createPedido); // POST /pedidos (alunos agora podem reservar)
 router.put('/:id', validateToken, validateAdmin, updatePedido); // PUT /pedidos/:id
 router.delete('/:id', validateToken, validateAdmin, deletePedido); // DELETE /pedidos/:id
 

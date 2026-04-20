@@ -19,6 +19,3 @@ router.put('/:id', validateToken, validateAdmin, updateUsuario); // PUT /usuario
 router.delete('/:id', validateToken, validateAdmin, deleteUsuario); // DELETE /usuarios/:id
 
 export default router;
-
-// DESAFIO: IMPLEMENTAR A LOGICA DE PEDIDOS (CRUD)
-// CORREÇÃO: 21h30

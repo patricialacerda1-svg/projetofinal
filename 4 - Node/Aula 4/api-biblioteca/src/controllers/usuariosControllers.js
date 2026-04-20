@@ -36,6 +36,17 @@ export async function createUsuario(req, res) {
     return res.status(400).json({ error: 'Campos obrigatórios: nome, cpf, email, senha, perfil, status, data_nascimento' });
   }
 
+  // Validações personalizadas
+  if (!isValidEmail(email)) {
+    return res.status(400).json({ error: 'Email inválido. Use formato exemplo@dominio.com' });
+  }
+  if (!isValidSenha(senha)) {
+    return res.status(400).json({ error: 'Senha deve ter pelo menos 6 caracteres, incluindo letras e números' });
+  }
+  if (!isValidCpf(cpf)) {
+    return res.status(400).json({ error: 'CPF deve ter exatamente 11 dígitos numéricos' });
+  }
+
   const saltRounds = 10;
   const hashedPassword = await bcrypt.hash(senha, saltRounds);
 
@@ -69,6 +80,17 @@ export async function updateUsuario(req, res) {
 
   const { nome, matricula, perfil, curso, cpf, data_nascimento, email, senha, status } = req.body;
 
+  // Validações se campos fornecidos
+  if (email && !isValidEmail(email)) {
+    return res.status(400).json({ error: 'Email inválido. Use formato exemplo@dominio.com' });
+  }
+  if (senha && !isValidSenha(senha)) {
+    return res.status(400).json({ error: 'Senha deve ter pelo menos 6 caracteres, incluindo letras e números' });
+  }
+  if (cpf && !isValidCpf(cpf)) {
+    return res.status(400).json({ error: 'CPF deve ter exatamente 11 dígitos numéricos' });
+  }
+
   try {
 
     const saltRounds = 10;
@@ -99,6 +121,21 @@ export async function updateUsuario(req, res) {
     }
     res.status(500).json({ error: 'Erro ao atualizar usuário' });
   }
+}
+
+// Funções de validação
+function isValidEmail(email) {
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  return emailRegex.test(email);
+}
+
+function isValidSenha(senha) {
+  return senha.length >= 6 && /[a-zA-Z]/.test(senha) && /\d/.test(senha);
+}
+
+function isValidCpf(cpf) {
+  const cpfRegex = /^\d{11}$/;
+  return cpfRegex.test(cpf);
 }
 
 export async function deleteUsuario(req, res) {
